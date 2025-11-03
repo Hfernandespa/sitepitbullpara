@@ -824,7 +824,14 @@
             </div>
         </div>
     </footer>
+<!-- Adicione este código no final do body, antes do script existente -->
 
+<!-- Link para o painel administrativo (visível apenas para administradores) -->
+<div style="position: fixed; bottom: 20px; left: 20px; z-index: 1000;">
+    <a href="admin.html" style="background-color: rgba(0,0,0,0.7); color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none; font-size: 0.8rem;">
+        <i class="fas fa-cog"></i> Painel Admin
+    </a>
+</div>
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
