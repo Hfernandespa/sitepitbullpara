@@ -36,7 +36,7 @@
             padding: 0 15px;
         }
         
-        /* Hero Section com Painel Cinza */
+        /* Hero Section com Painel Cinza - Logo com Animação */
         .hero-with-panel {
             position: relative;
             height: 100vh;
@@ -45,7 +45,7 @@
             justify-content: center;
             overflow: hidden;
         }
-        
+
         .hero-bg {
             position: absolute;
             top: 0;
@@ -53,10 +53,16 @@
             width: 100%;
             height: 100%;
             background: url('https://images.unsplash.com/photo-1605722249424-37bb8e49673b?ixlib=rb-4.0.3') center/cover no-repeat;
-            filter: brightness(0.8);
+            filter: brightness(0.7);
             z-index: -2;
+            transform: scale(1.05);
+            transition: transform 10s ease-out;
         }
-        
+
+        .hero-with-panel:hover .hero-bg {
+            transform: scale(1.1);
+        }
+
         .hero-panel {
             position: absolute;
             top: 50%;
@@ -66,77 +72,221 @@
             max-width: 900px;
             height: 80%;
             max-height: 600px;
-            background-color: var(--panel-color);
+            background: linear-gradient(135deg, rgba(60, 60, 60, 0.9) 0%, rgba(40, 40, 40, 0.85) 100%);
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
             z-index: -1;
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
         }
-        
+
         .hero-content {
             text-align: center;
             z-index: 1;
             padding: 40px;
+            position: relative;
         }
-        
-        .hero-logo {
-            max-width: 400px;
-            margin: 0 auto 40px;
-            animation: fadeIn 1.5s ease-in-out;
+
+        .hero-logo.animated-logo {
+            position: relative;
+            max-width: 450px;
+            margin: 0 auto -20px;
+            animation: logo-entrance 2.5s ease-out forwards;
         }
-        
-        .hero-logo img {
+
+        .logo-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-logo.animated-logo img {
             width: 100%;
             height: auto;
-            filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.7));
+            filter: drop-shadow(0 0 30px rgba(200, 16, 46, 0.8));
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 2;
+            border-radius: 50%;
+            animation: logo-pulse 2s ease-in-out infinite;
         }
-        
+
+        .hero-logo.animated-logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .logo-glow {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            background: radial-gradient(circle, rgba(200, 16, 46, 0.3) 0%, rgba(200, 16, 46, 0) 70%);
+            border-radius: 50%;
+            z-index: 1;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        /* Efeito de brilho adicional */
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, rgba(200, 16, 46, 0.2), rgba(255, 255, 255, 0.1), rgba(200, 16, 46, 0.2));
+            border-radius: 50%;
+            z-index: 0;
+            opacity: 0.7;
+            filter: blur(5px);
+        }
+
         .hero-text {
             color: white;
             max-width: 800px;
             margin: 0 auto;
         }
-        
+
         .hero-text h1 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             margin-bottom: 25px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             animation: slideUp 1s ease-out;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #ffffff, #f0f0f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        
+
         .hero-text p {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 35px;
             animation: slideUp 1s ease-out 0.3s both;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
         }
-        
+
         .btn {
             display: inline-block;
             background-color: var(--primary-color);
             color: white;
-            padding: 14px 35px;
+            padding: 16px 40px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             transition: all 0.3s;
             border: 2px solid var(--primary-color);
             animation: slideUp 1s ease-out 0.6s both;
+            box-shadow: 0 4px 15px rgba(200, 16, 46, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
-        
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+            z-index: -1;
+        }
+
         .btn:hover {
             background-color: transparent;
             color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(200, 16, 46, 0.6);
         }
-        
+
+        .btn:hover:before {
+            transform: translateX(0);
+        }
+
+        /* Elementos flutuantes */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(200, 16, 46, 0.1);
+            filter: blur(5px);
+        }
+
+        .element-1 {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .element-2 {
+            width: 120px;
+            height: 120px;
+            bottom: 30%;
+            right: 15%;
+            animation: float 10s ease-in-out infinite 1s;
+        }
+
+        .element-3 {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            left: 20%;
+            animation: float 7s ease-in-out infinite 2s;
+        }
+
+        /* Animações da Logo */
+        @keyframes logo-entrance {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(-10deg);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1) rotate(5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes logo-pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02); /* Reduzido de 1.05 para 1.02 para uma pulsação mais sutil */
+            }
+        }
+
         /* Animações */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        
+
         @keyframes slideUp {
             from {
                 opacity: 0;
@@ -145,6 +295,50 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.05);
+            }
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .hero-logo.animated-logo {
+                max-width: 300px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-text p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+                font-size: 1rem;
+            }
+            
+            .element-1, .element-2, .element-3 {
+                display: none;
             }
         }
         
@@ -496,6 +690,121 @@
             font-size: 0.9rem;
         }
         
+        /* Audio Player Styles - CORRIGIDO */
+        .audio-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .audio-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            margin-bottom: 5px;
+        }
+        
+        .audio-info i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .audio-info span {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 5px 0;
+        }
+        
+        .audio-controls button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+            padding: 5px;
+        }
+        
+        .audio-controls button:hover {
+            color: var(--primary-color);
+        }
+        
+        .audio-controls .play-pause {
+            background-color: var(--primary-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .audio-controls .play-pause:hover {
+            background-color: #e01230;
+        }
+        
+        .audio-progress {
+            width: 100%;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            margin: 8px 0;
+        }
+        
+        .audio-progress-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+        
+        .audio-volume {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        
+        .audio-volume i {
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .audio-volume-slider {
+            width: 70px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .audio-volume-bar {
+            height: 100%;
+            background-color: white;
+            width: 70%;
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .header-container {
@@ -511,18 +820,6 @@
             
             nav ul li {
                 margin: 5px 10px;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-text p {
-                font-size: 1.1rem;
-            }
-            
-            .hero-logo {
-                max-width: 300px;
             }
             
             .hero-panel {
@@ -545,6 +842,18 @@
             .social-link {
                 padding: 10px 15px;
             }
+            
+            .audio-player {
+                width: 250px;
+                bottom: 10px;
+                right: 10px;
+                padding: 12px;
+            }
+            
+            .audio-controls .play-pause {
+                width: 35px;
+                height: 35px;
+            }
         }
     </style>
 </head>
@@ -562,6 +871,8 @@
                     <li><a href="#origem">Origem</a></li>
                     <li><a href="#brasil">No Brasil</a></li>
                     <li><a href="#pitbull-para">Pit Bull Pará</a></li>
+                    <li><a href="nutricao.html">Nutrição</a></li>
+                    <li><a href="mitos.html">Mitos vs Realidade</a></li>
                     <li><a href="#galeria">Galeria</a></li>
                     <li><a href="#contato">Contato</a></li>
                 </ul>
@@ -569,19 +880,27 @@
         </div>
     </header>
 
-    <!-- Hero Section com Painel Cinza -->
+    <!-- Hero Section com Painel Cinza - Logo com Animação -->
     <section id="home" class="hero-with-panel">
         <div class="hero-bg"></div>
         <div class="hero-panel"></div>
         <div class="hero-content">
-            <div class="hero-logo">
-                <img src="https://z-cdn-media.chatglm.cn/files/0892fcd4-bc3b-4dd7-93d2-9692628b8bce_logo%20do%20site.png?auth_key=1793280392-5ada31408b2545d68e0768e722369495-0-f1d2b458e19cd463a3068be4b95a922d" alt="Pit Bull Pará Logo">
+            <div class="hero-logo animated-logo">
+                <div class="logo-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/0892fcd4-bc3b-4dd7-93d2-9692628b8bce_logo%20do%20site.png?auth_key=1793280392-5ada31408b2545d68e0768e722369495-0-f1d2b458e19cd463a3068be4b95a922d" alt="Pit Bull Pará Logo">
+                    <div class="logo-glow"></div>
+                </div>
             </div>
             <div class="hero-text">
                 <h1>American Pit Bull Terrier</h1>
                 <p>Conheça a história, características e desenvolvimento da raça no Brasil e no Pará</p>
                 <a href="#origem" class="btn">Explorar História</a>
             </div>
+        </div>
+        <div class="floating-elements">
+            <div class="floating-element element-1"></div>
+            <div class="floating-element element-2"></div>
+            <div class="floating-element element-3"></div>
         </div>
     </section>
 
@@ -670,9 +989,9 @@
                 <div class="para-text">
                     <p>O interesse dos sócios pela raça surgiu quando começaram a ser noticiados supostos ataques de Pit Bulls. Adolpho duvidou da índole agressiva da raça com seres humanos e, pesquisando, constatou que não se tratava exatamente do que a mídia divulgava.</p>
                     
-                    <p>A partir de então, surgiu a ideia de criar um portal na internet para divulgar informações sobre a raça. Foi assim que nasceu o portal pitbullpara.com.br, que produzia encontros de amantes da raça na capital e incentivava a criação consciente.</p>
+                    <p>A partir de então, surgiu a ideia de criar um portal na internet para divulgar informações sobre a raça. Foi assim que nasceu o portal pitbullpara.com.br o mais completo em informações da época, que unia criação com informação e produzia encontros de amantes da raça na capital e incentivava a criação consciente.</p>
                     
-                    <p>No início, o foco da criação era voltado para cães mais pesados, de conformação. A primeira ninhada do Pitbull Pará foi Hulk x Iris, posteriormente vieram várias outras ninhadas com cruzamentos como Redinho x Hannya, Brenda pitgame x Chocolate, entre outros.</p>
+                    <p>No início, o foco era a criação e voltado para cães mais pesados, de conformação. A primeira ninhada do Pitbull Pará foi Hulk x Iris, posteriormente vieram várias outras ninhadas com cruzamentos como Redinho x Hannya, Brenda pitgame x Chocolate, entre outros.</p>
                     
                     <p>Os cães tinham origem dos canis Thompson e Canchin, pitgame e de linhagens tradicionais como Old Family Red Nose, Bellons, May Days, Eli Boudreaux e Patricks, selecionados para a prática esportiva.</p>
                 </div>
@@ -688,7 +1007,7 @@
                     </div>
                     <div class="achievement-item">
                         <i class="fas fa-medal"></i>
-                        <span>Introdução do PitGameness no estado, com campeonatos e encontros</span>
+                        <span>Introdução do PitGameness no estado, com campeonatos e encontros.&nbsp;</span>
                     </div>
                     <div class="achievement-item">
                         <i class="fas fa-users"></i>
@@ -797,6 +1116,8 @@
                         <li><a href="#origem">Origem da Raça</a></li>
                         <li><a href="#brasil">No Brasil</a></li>
                         <li><a href="#pitbull-para">Pit Bull Pará</a></li>
+                        <li><a href="nutricao.html">Nutrição & Corpo de Trabalho</a></li>
+                        <li><a href="mitos.html">Mitos vs Realidade</a></li>
                         <li><a href="#galeria">Galeria</a></li>
                     </ul>
                 </div>
@@ -820,18 +1141,39 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2003-2025 Pit Bull Pará - Todos os direitos reservados.</p>
+                <p>© 2023 Pit Bull Pará - Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
-<!-- Adicione este código no final do body, antes do script existente -->
 
-<!-- Link para o painel administrativo (visível apenas para administradores) -->
-<div style="position: fixed; bottom: 20px; left: 20px; z-index: 1000;">
-    <a href="admin.html" style="background-color: rgba(0,0,0,0.7); color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none; font-size: 0.8rem;">
-        <i class="fas fa-cog"></i> Painel Admin
-    </a>
-</div>
+    <!-- Audio Player -->
+    <div class="audio-player">
+        <div class="audio-info">
+            <i class="fas fa-music"></i>
+            <span>Eye of the Tiger</span>
+        </div>
+        
+        <div class="audio-controls">
+            <button id="prevBtn"><i class="fas fa-step-backward"></i></button>
+            <button id="playPauseBtn" class="play-pause"><i class="fas fa-play"></i></button>
+            <button id="nextBtn"><i class="fas fa-step-forward"></i></button>
+        </div>
+        
+        <div class="audio-progress" id="progressBar">
+            <div class="audio-progress-bar" id="progressBarFill"></div>
+        </div>
+        
+        <div class="audio-volume">
+            <i class="fas fa-volume-up"></i>
+            <div class="audio-volume-slider" id="volumeSlider">
+                <div class="audio-volume-bar" id="volumeBar"></div>
+            </div>
+        </div>
+        
+        <!-- Elemento de áudio oculto - CAMINHO CORRIGIDO -->
+        <audio id="audioElement" src="mp3/eye-of-the-tiger.mp3"></audio>
+    </div>
+
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -853,6 +1195,67 @@
                 header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
             }
         });
+        
+        // Audio Player Functionality
+        const audioElement = document.getElementById('audioElement');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressBarFill = document.getElementById('progressBarFill');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeBar = document.getElementById('volumeBar');
+        
+        // Verificar se o elemento de áudio foi carregado corretamente
+        audioElement.addEventListener('error', function() {
+            console.error('Erro ao carregar o arquivo de áudio. Verifique o caminho: mp3/eye-of-the-tiger.mp3');
+            alert('Erro ao carregar o arquivo de áudio. Verifique se o arquivo existe no caminho correto.');
+        });
+        
+        // Play/Pause functionality
+        playPauseBtn.addEventListener('click', function() {
+            if (audioElement.paused) {
+                audioElement.play();
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                audioElement.pause();
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        });
+        
+        // Update progress bar as audio plays
+        audioElement.addEventListener('timeupdate', function() {
+            if (audioElement.duration) {
+                const progress = (audioElement.currentTime / audioElement.duration) * 100;
+                progressBarFill.style.width = progress + '%';
+            }
+        });
+        
+        // Allow user to seek through the audio
+        progressBar.addEventListener('click', function(e) {
+            const clickPosition = (e.pageX - progressBar.offsetLeft) / progressBar.offsetWidth;
+            audioElement.currentTime = clickPosition * audioElement.duration;
+        });
+        
+        // Volume control
+        volumeSlider.addEventListener('click', function(e) {
+            const clickPosition = (e.pageX - volumeSlider.offsetLeft) / volumeSlider.offsetWidth;
+            audioElement.volume = clickPosition;
+            volumeBar.style.width = (clickPosition * 100) + '%';
+        });
+        
+        // Reset play button when audio ends
+        audioElement.addEventListener('ended', function() {
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        });
+        
+        // Auto-play when page loads (opcional)
+        window.addEventListener('load', function() {
+            console.log('Página carregada. Player de áudio pronto.');
+            // Descomente as linhas abaixo se quiser que o áudio comece automaticamente
+            // audioElement.play();
+            // playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        });
     </script>
-</body>
-</html>
+
+</body></html>
