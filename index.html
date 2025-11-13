@@ -17,13 +17,16 @@
             --primary-color: #c8102e;
             --secondary-color: #000;
             --accent-color: #f8f8f8;
-            --text-color: #333;
+            --text-color: #ffffff; /* Alterado para texto branco */
             --light-bg: #f5f5f5;
+            --medium-gray: #a3a3a3; /* Alterado para cinza escuro igual ao fundo da imagem */
+            --dark-gray: #1a1a1a;
+            --card-gray: #3a3a3a; /* Cinza médio para cards */
             --panel-color: rgba(60, 60, 60, 0.85);
         }
         
         body {
-            background-color: var(--light-bg);
+            background-color: var(--medium-gray); /* Alterado para cinza escuro igual ao fundo da imagem */
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
@@ -110,7 +113,7 @@
             position: relative;
             z-index: 2;
             border-radius: 50%;
-            animation: logo-pulse 2s ease-in-out infinite;
+            animation: logo-pulse 4s ease-in-out infinite;
         }
 
         .hero-logo.animated-logo:hover img {
@@ -277,7 +280,7 @@
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.02); /* Reduzido de 1.05 para 1.02 para uma pulsação mais sutil */
+                transform: scale(1.02);
             }
         }
 
@@ -400,6 +403,7 @@
         /* Section Styles */
         section {
             padding: 80px 0;
+            background-color: var(--medium-gray); /* Fundo cinza escuro para todas as seções */
         }
         
         .section-title {
@@ -422,7 +426,7 @@
         
         .section-title h2 {
             font-size: 2.5rem;
-            color: var(--secondary-color);
+            color: var(--text-color); /* Texto branco */
         }
         
         /* History Section */
@@ -499,10 +503,10 @@
         }
         
         .brazil-card {
-            background: white;
+            background: var(--card-gray); /* Fundo cinza médio para os cards */
             border-radius: 10px;
             padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transition: transform 0.3s;
         }
         
@@ -518,10 +522,10 @@
         
         /* Pit Bull Pará Section */
         .para-content {
-            background: white;
+            background: var(--card-gray); /* Fundo cinza médio */
             border-radius: 10px;
             padding: 40px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .para-info {
@@ -539,7 +543,7 @@
         .para-achievements {
             flex: 1;
             min-width: 250px;
-            background: var(--light-bg);
+            background: var(--dark-gray); /* Fundo cinza mais escuro */
             padding: 25px;
             border-radius: 10px;
         }
@@ -574,7 +578,7 @@
             border-radius: 10px;
             overflow: hidden;
             height: 250px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .gallery-item img {
@@ -606,7 +610,7 @@
         
         /* Social Media Banner */
         .social-banner {
-            background-color: var(--secondary-color);
+            background-color: var(--primary-color); /* Alterado para vermelho */
             color: white;
             padding: 30px 0;
             text-align: center;
@@ -627,7 +631,7 @@
         .social-link {
             display: flex;
             align-items: center;
-            background-color: rgba(255,255,255,0.1);
+            background-color: rgba(255,255,255,0.2);
             padding: 12px 20px;
             border-radius: 30px;
             text-decoration: none;
@@ -636,7 +640,7 @@
         }
         
         .social-link:hover {
-            background-color: var(--primary-color);
+            background-color: rgba(255,255,255,0.3);
             transform: translateY(-5px);
         }
         
@@ -945,7 +949,7 @@
     </section>
 
     <!-- Brazil Section -->
-    <section id="brasil" class="container" style="background-color: #f9f9f9;">
+    <section id="brasil" class="container">
         <div class="section-title">
             <h2>Chegada e Desenvolvimento no Brasil</h2>
         </div>
@@ -1027,7 +1031,7 @@
     </section>
 
     <!-- Gallery Section -->
-    <section id="galeria" class="container" style="background-color: #f9f9f9;">
+    <section id="galeria" class="container">
         <div class="section-title">
             <h2>Galeria de Pit Bulls</h2>
         </div>
